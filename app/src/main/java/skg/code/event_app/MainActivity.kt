@@ -14,8 +14,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
 const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +57,9 @@ class MainActivity : AppCompatActivity() {
         val retrofitData = retrofitBuilder.getEvents()
 
         retrofitData.enqueue(object : Callback<List<EventDataItem>?> {
+            // To ena ? einai gia nullable. Ama einai null to variable,
+            // to app den crasharei me null pointer exception
+            // kai synexizei na douleuei an kai einai null.
             override fun onResponse(
                 call: Call<List<EventDataItem>?>,
                 response: Response<List<EventDataItem>?>
