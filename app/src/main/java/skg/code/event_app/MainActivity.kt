@@ -14,7 +14,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL = "http://localhost:3001/"
+const val BASE_URL = "http://10.0.2.2:3001/"
 class MainActivity : AppCompatActivity() {
 
 //    private lateinit var recyclerView: RecyclerView
@@ -100,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             .create(ApiInterface::class.java)
 
         val retrofitData = retrofitBuilder.getEvents()
+        Log.d("testing", "getMyData: $retrofitData")
 
         retrofitData.enqueue(object : Callback<List<LiveData>?> {
             override fun onResponse(
