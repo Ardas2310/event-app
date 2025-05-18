@@ -7,6 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+
+    private var fullEventList: List<EventDataItem> = eventList
+    private var uniqueCategories: List<String> = eventList.map { it.event_category }.distinct()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -19,15 +23,22 @@ class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<Eve
         holder: EventViewHolder,
         position: Int
     ) {
-        holder.event_description.text = eventList[position].event_description // Change it to an image
+        holder.event_category.text = uniqueCategories[position]
     }
 
     override fun getItemCount(): Int {
-        return eventList.size
+        return uniqueCategories.size
     }
 
+    fun updateEvents(newEvents: List<EventDataItem>) {
+        fullEventList = newEvents
+        uniqueCategories = newEvents.map { it.event_category }.distinct()
+        notifyDataSetChanged()
+    }
+
+
     inner class EventViewHolder(eventView : View): RecyclerView.ViewHolder(eventView){
-//        val event_title : TextView = eventView.findViewById(R.id.tvEventTitle)
-        val event_description : TextView = eventView.findViewById(R.id.tvEventDescription)
+        val event_category : TextView = eventView.findViewById(R.id.text_event_type)
+//        val event_description : TextView = eventView.findViewById(R.id.tvEventDescription)
     }
 }

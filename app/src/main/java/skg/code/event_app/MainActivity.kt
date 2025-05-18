@@ -15,12 +15,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL = "http://10.0.2.2:3001/"
 class MainActivity : AppCompatActivity() {
-
+    // Utilized Views / Adapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-    //EventList is a test list for manual insertion of data
-    //private var eventList = ArrayList<EventDataItem>()
     private lateinit var adapter: EventAdapter
+
+
+    //EventList is a test list for manual insertion of data
+    private var eventList = ArrayList<EventDataItem>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,29 +38,30 @@ class MainActivity : AppCompatActivity() {
         // This function is inserting data to the eventList manually
         //addEventToList()
 
-        //TODO:
+        // MongoDb data
         adapter = EventAdapter(emptyList())
         recyclerView.adapter = adapter
 
         getMongoData()
     }
     //Manual insertion of data to the eventList Object
-//    private fun addEventToList(){
-//        eventList.add(
-//            EventDataItem(
-//                event_booked = false,
-//                event_category = "Concert",
-//                event_date = EventDate("2023-10-01T00:00:00Z"),
-//                event_description = "This is a description of the event",
-//                event_location = "Thessaloniki",
-//                event_organizer = "John Doe",
-//                event_price = 20.0,
-//                event_time = "18:00",
-//                event_title = "Concert Title",
-//                venue = "Venue Name",
-//
-//            ))
-//    }
+    private fun addEventToList(){
+        eventList.add(
+            EventDataItem(
+                event_booked = false,
+                event_category = "Concert",
+                event_date = "2023-10-01T00:00:00Z",
+                event_description = "This is a description of the event",
+                event_location = "Thessaloniki",
+                event_organizer = "John Doe",
+                event_price = 20.0,
+                event_time = "18:00",
+                event_title = "Concert Title",
+                venue = "Venue Name",
+                __v = 0,
+                _id = "123",
+            ))
+    }
 
 
     private fun getMongoData() {
