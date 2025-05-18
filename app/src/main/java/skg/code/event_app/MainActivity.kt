@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             .create(ApiInterface::class.java)
 
         val retrofitData = retrofitBuilder.getEvents()
+        Log.d("testing", "getMyData: $retrofitData")
 
         retrofitData.enqueue(object : Callback<List<EventDataItem>> {
             override fun onResponse(
