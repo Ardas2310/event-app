@@ -1,8 +1,8 @@
 package skg.code.event_app
 
-data class EventDataItem(
-    val __v: Int,
-    val _id: String,
+// TODO Add an "id" field to the LiveData class
+//  for identifying a unique item in the list.
+data class LiveData(
     val event_booked: Boolean,
     val event_category: String,
     val event_date: String,

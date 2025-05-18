@@ -2,7 +2,6 @@ package skg.code.event_app
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 
@@ -14,70 +13,85 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-
-const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+const val BASE_URL = "http://10.0.2.2:3001/"
 class MainActivity : AppCompatActivity() {
 
-//    private lateinit var recyclerView: RecyclerView
-//    private lateinit var searchView: SearchView
-    private lateinit var textViewId: TextView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var searchView: SearchView
+    //EventList is a test list for manual insertion of data
+    //private var eventList = ArrayList<EventDataItem>()
+    private lateinit var adapter: EventAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-        setContentView(R.layout.testing)
+        setContentView(R.layout.activity_main)
 
-        //How to use Retrofit to fetch data from our REST API
-        //TODO: Na to prosarmosoyme sta dika mas data
-        textViewId = findViewById(R.id.textViewId)
-        getMyData()
+        recyclerView = findViewById(R.id.recyclerView)
+        searchView = findViewById(R.id.searchView)
 
-//        recyclerView = findViewById(R.id.recyclerView)
-//        searchView = findViewById(R.id.searchView)
-//
-//
-//        recyclerView.setHasFixedSize(true)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-//        addDataToList()
+        // This function is inserting data to the eventList manually
+        //addEventToList()
+
+        //TODO:
+        adapter = EventAdapter(emptyList())
+        recyclerView.adapter = adapter
+
+        getMongoData()
     }
-
-//    private fun addDataToList(){
+    //Manual insertion of data to the eventList Object
+//    private fun addEventToList(){
+//        eventList.add(
+//            EventDataItem(
+//                event_booked = false,
+//                event_category = "Concert",
+//                event_date = EventDate("2023-10-01T00:00:00Z"),
+//                event_description = "This is a description of the event",
+//                event_location = "Thessaloniki",
+//                event_organizer = "John Doe",
+//                event_price = 20.0,
+//                event_time = "18:00",
+//                event_title = "Concert Title",
+//                venue = "Venue Name",
 //
+//            ))
 //    }
 
 
-    private fun getMyData() {
+    private fun getMongoData() {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
             .create(ApiInterface::class.java)
 
-        //.getEvents is in our interface
         val retrofitData = retrofitBuilder.getEvents()
+        Log.d("testing", "getMyData: $retrofitData")
 
-        retrofitData.enqueue(object : Callback<List<EventDataItem>?> {
+        retrofitData.enqueue(object : Callback<List<EventDataItem>> {
             override fun onResponse(
-                call: Call<List<EventDataItem>?>,
-                response: Response<List<EventDataItem>?>
+                call: Call<List<EventDataItem>>,
+                response: Response<List<EventDataItem>>
             ) {
-                val responseBody = response.body()!! // Ta dyo !! einai null safety
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("MainActivity", "Events received: ${responseBody?.size}")
 
-                val myStringBuilder = StringBuilder()
-                for(myData in responseBody){
-                    myStringBuilder.append(myData.id)
-                    myStringBuilder.append("\n")
+                    if (responseBody != null) {
+                        // Update RecyclerView with data from MongoDB
+                        adapter = EventAdapter(responseBody)
+                        recyclerView.adapter = adapter
+                    }
+                } else {
+                    Log.e("MainActivity", "Error: ${response.code()} - ${response.message()}")
                 }
-                //Synthetic binding
-                textViewId.text = myStringBuilder.toString()
-
-
             }
 
-            override fun onFailure(call: Call<List<EventDataItem>?>, t: Throwable) {
-                Log.d("testing", "onFailure: ${t.message}")
+            override fun onFailure(call: Call<List<EventDataItem>>, t: Throwable) {
+                Log.e("MainActivity", "API call failed: ${t.message}")
             }
         })
     }
