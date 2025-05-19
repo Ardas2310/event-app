@@ -32,7 +32,7 @@ class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<Eve
 
     fun updateEvents(newEvents: List<EventDataItem>) {
         fullEventList = newEvents
-        uniqueCategories = newEvents.map { it.event_category }.distinct()
+        uniqueCategories = fullEventList.map { it.event_category }.distinct()
         notifyDataSetChanged()
     }
 

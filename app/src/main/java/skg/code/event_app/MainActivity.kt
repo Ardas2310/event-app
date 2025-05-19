@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         adapter = EventAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        getMongoData()
+        fetchEventCategory()
     }
     //Manual insertion of data to the eventList Object
     private fun addEventToList(){
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun getMongoData() {
+    private fun fetchEventCategory() {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
@@ -98,4 +98,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+
+
+
 }
