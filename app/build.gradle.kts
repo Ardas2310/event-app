@@ -47,6 +47,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //Coil
+    implementation("io.coil-kt:coil:2.4.0")
+
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.7.1")
