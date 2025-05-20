@@ -1,10 +1,12 @@
 package skg.code.event_app
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import skg.code.event_app.EventsCategory.EventsCategoryActivity
 
 class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
@@ -23,7 +25,17 @@ class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<Eve
         holder: EventViewHolder,
         position: Int
     ) {
-        holder.event_category.text = uniqueCategories[position]
+        val category = uniqueCategories[position]
+        holder.event_category.text = category
+
+        // How we make each item clickable
+        holder.itemView.setOnClickListener {
+            val context = holder.event_category.context
+            val intent = Intent(context, EventsCategoryActivity::class.java).apply {
+                putExtra("CATEGORY", category)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
