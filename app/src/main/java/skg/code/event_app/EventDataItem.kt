@@ -12,5 +12,7 @@ data class EventDataItem(
     val event_price: Double,
     val event_time: String,
     val event_title: String,
-    val venue: String
+    val venue: String,
+    val category_image_url: String = "",
+    val event_image_url: String = "",
 )
