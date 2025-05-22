@@ -27,7 +27,12 @@
         </activity>
         <activity
             android:name=".EventsCategory.EventsCategoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
+        <activity
+            android:name=".Search.SearchActivity"
+            android:exported="false"
+            />
 
     </application>
 
