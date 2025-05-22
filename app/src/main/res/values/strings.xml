@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">event-app</string>
     <string name="image">image</string>
+    <string name="event_image">event_image</string>
 
 
 </resources>
