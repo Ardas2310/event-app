@@ -1,23 +1,24 @@
 package skg.code.event_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import skg.code.event_app.Search.SearchActivity
 
-const val BASE_URL = "http://10.0.2.2:3001/"
+const val BASE_URL = "https://event-app-backend-evev.onrender.com/"
 class MainActivity : AppCompatActivity() {
     // Utilized Views / Adapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var searchView: SearchView
     private lateinit var adapter: EventAdapter
 
 
@@ -29,11 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.recyclerView)
-        searchView = findViewById(R.id.searchView)
-
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = findViewById(R.id.MainRecyclerView)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        findViewById<androidx.cardview.widget.CardView>(R.id.search_button).setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         // This function is inserting data to the eventList manually
         //addEventToList()
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         fetchEventCategory()
     }
+
+
     //Manual insertion of data to the eventList Object
     private fun addEventToList(){
         eventList.add(
