@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -99,8 +100,7 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<EventDataItem>?>, t: Throwable) {
                 Log.e("SearchActivity", "API call failed: ${t.message}")
-                //TODO: Another way to handle error is with a toast notification
-                //TODO: Implement it afterwards
+                Toast.makeText(applicationContext, "Sorry! Something went wrong.", Toast.LENGTH_SHORT).show()
             }
         })
     }
