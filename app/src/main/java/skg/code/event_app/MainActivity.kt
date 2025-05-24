@@ -54,6 +54,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    // TODO Shouldn't this function be removed if it is unused?
+    //  Remove if you don't use it, or leave it if you do.
+    //  Write code to use on the fly.
     //Manual insertion of data to the eventList Object
     private fun addEventToList(){
         eventList.add(
