@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     // Utilized Views / Adapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: EventAdapter
+    private lateinit var drawerLayout: DrawerLayout
 
 
     //EventList is a test list for manual insertion of data
@@ -44,11 +48,29 @@ class MainActivity : AppCompatActivity() {
         var progressBarRV = findViewById<ProgressBar>(R.id.progress_circular_rv)
         recyclerView = findViewById(R.id.MainRecyclerView)
 
+
+
+
+
+
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         findViewById<androidx.cardview.widget.CardView>(R.id.search_button).setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
+
+
+        // DrawerLayout for the navigation drawer
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val userImageButton = findViewById<ImageView>(R.id.user_profile_image)
+        userImageButton.setOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.END)
+            }
+        }
+
 
         // This function is inserting data to the eventList manually
         //addEventToList()

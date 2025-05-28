@@ -3,8 +3,10 @@ package skg.code.event_app.EventsCategory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.R
 
@@ -19,8 +21,17 @@ class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = eventList[position]
+
         holder.eventTitle.text = event.event_title
         holder.eventDescription.text = event.event_description
+
+        holder.eventPrice.text = "${event.event_price}€"
+
+        holder.eventImagePreview.load(event.event_image_url){
+            crossfade(true)
+            placeholder(R.drawable.ic_launcher_background)
+            error(R.drawable.ic_launcher_background)
+        }
     }
 
     override fun getItemCount(): Int = eventList.size
@@ -33,5 +44,7 @@ class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val eventTitle: TextView = itemView.findViewById(R.id.event_title)
         val eventDescription: TextView = itemView.findViewById(R.id.event_description)
+        val eventPrice: TextView = itemView.findViewById(R.id.event_price)
+        val eventImagePreview: ImageView = itemView.findViewById(R.id.event_image_result)
     }
 }
