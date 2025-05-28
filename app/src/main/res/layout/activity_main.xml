@@ -22,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Categories"
+            android:text="@string/categories"
             android:textColor="@color/white"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -78,19 +78,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:orientation="vertical"
         android:background="@color/gray"
+        android:orientation="vertical"
         android:padding="20dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingTop="10dp">
 
             <TextView
@@ -101,17 +101,17 @@
                 android:text="User Name"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/close_drawer_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:contentDescription="Close Drawer"
-                android:padding="4dp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:contentDescription="Close Drawer"
+                android:focusable="true"
+                android:padding="4dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
         </LinearLayout>
 
 
@@ -119,29 +119,28 @@
             android:id="@+id/profile_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp"/>
+            android:text="Profile"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/settings_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-            android:layout_marginTop="8dp"/>
+            android:text="Settings"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/support_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Support"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
-            />
+            android:backgroundTint="@color/white"
+            android:text="Support"
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
