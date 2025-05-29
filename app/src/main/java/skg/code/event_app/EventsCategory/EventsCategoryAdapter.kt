@@ -1,5 +1,6 @@
 package skg.code.event_app.EventsCategory
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import skg.code.event_app.EventDataItem
+import skg.code.event_app.EventDetails.EventDetailsActivity
 import skg.code.event_app.R
 
 class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
@@ -31,6 +33,12 @@ class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
             crossfade(true)
             placeholder(R.drawable.ic_launcher_background)
             error(R.drawable.ic_launcher_background)
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, EventDetailsActivity::class.java)
+            intent.putExtra("EVENT_ID", event._id)
+            holder.itemView.context.startActivity(intent)
         }
     }
 

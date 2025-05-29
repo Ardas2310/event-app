@@ -3,6 +3,8 @@
     <string name="image">image</string>
     <string name="event_image">event_image</string>
     <string name="categories">Categories</string>
+    <string name="search">Search...</string>
+    <string name="suggestions">Suggestions</string>
 
 
 </resources>
