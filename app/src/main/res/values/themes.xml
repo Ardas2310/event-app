@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/lavender</item>
         <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/gray</item>
     </style>
 
     <style name="Theme.Eventapp" parent="Base.Theme.Eventapp" />
