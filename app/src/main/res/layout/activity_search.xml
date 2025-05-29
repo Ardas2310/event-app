@@ -25,14 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
-            app:cardElevation="2dp">
+            app:cardElevation="4dp">
 
             <EditText
                 android:id="@+id/search_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="Search events..."
+                android:hint="@string/search"
                 android:inputType="text"
 
                 android:maxLines="1"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
-        android:text="Suggestions"
+        android:text="@string/suggestions"
         android:textSize="18sp"
         android:textStyle="bold" />
 

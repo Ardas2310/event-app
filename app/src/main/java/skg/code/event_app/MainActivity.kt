@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //TODO: Fix splash Screen's height and width at the drawable file.
+
         Thread.sleep(3000)
         installSplashScreen()
 
