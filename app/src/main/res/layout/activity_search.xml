@@ -47,6 +47,7 @@
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
         android:text="@string/suggestions"
+        android:textColor="@color/yellow"
         android:textSize="18sp"
         android:textStyle="bold" />
 
