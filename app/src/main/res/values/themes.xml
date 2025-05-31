@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/lavender</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/gray</item>
+        <item name="colorOnBackground">@color/yellow</item>
+        <item name="android:windowBackground">@color/purple</item>
     </style>
 
     <style name="Theme.Eventapp" parent="Base.Theme.Eventapp" />
