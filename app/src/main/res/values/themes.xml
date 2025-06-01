@@ -3,9 +3,12 @@
     <style name="Base.Theme.Eventapp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/lavender</item>
-        <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/gray</item>
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorSurface">#FFFFFF</item>
+
+<!--        <item name="colorOnBackground">#FFC107</item>-->
+<!--        <item name="colorOnSurface">@color/gray</item>-->
+        <item name="colorOnSurface">#895BF1</item>
         <item name="colorOnBackground">@color/yellow</item>
         <item name="android:windowBackground">@color/purple</item>
     </style>

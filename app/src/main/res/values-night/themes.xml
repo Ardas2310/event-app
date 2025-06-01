@@ -3,9 +3,17 @@
     <style name="Base.Theme.Eventapp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorSurface">@color/gray</item>
-        <item name="colorOnSurface">@color/white</item>
+<!--        <item name="colorPrimary">@color/gray</item>-->
+<!--        <item name="colorSurface">@color/gray</item>-->
+<!--        <item name="colorOnSurface">@color/white</item>-->
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorSurface">#FFFFFF</item>
+
+        <!--        <item name="colorOnBackground">#FFC107</item>-->
+        <!--        <item name="colorOnSurface">@color/gray</item>-->
+        <item name="colorOnSurface">#895BF1</item>
+        <item name="colorOnBackground">@color/yellow</item>
+        <item name="android:windowBackground">@color/dark_blue</item>
     </style>
 
     <style name="Theme.Eventapp" parent="Base.Theme.Eventapp" />
