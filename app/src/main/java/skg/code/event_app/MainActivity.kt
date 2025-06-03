@@ -20,6 +20,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import skg.code.event_app.Search.SearchActivity
+import skg.code.event_app.util.getSpecificEventDate
+import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "https://event-app-backend-evev.onrender.com/"
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             EventDataItem(
                 event_booked = false,
                 event_category = "Concert",
-                event_date = "2023-10-01T00:00:00Z",
+                event_date = getSpecificEventDate(2023, Calendar.OCTOBER, 1, 0, 0),
                 event_description = "This is a description of the event",
                 event_location = "Thessaloniki",
                 event_organizer = "John Doe",
