@@ -11,6 +11,7 @@ import coil.load
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.EventDetails.EventDetailsActivity
 import skg.code.event_app.R
+import skg.code.event_app.util.formatDate
 
 class TrendingEventsAdapter(private var events: List<EventDataItem>):
     RecyclerView.Adapter<TrendingEventsAdapter.TrendingEventViewHolder>() {
@@ -54,7 +55,7 @@ class TrendingEventsAdapter(private var events: List<EventDataItem>):
 
         fun bind(event: EventDataItem){
             EventTitle.text = event.event_title
-            EventDate.text = "${event.event_date} • ${event.event_location}"
+            EventDate.text = "${formatDate(event.event_date)} • ${event.event_location}"
             EventImage.load(event.event_image_url) {
                 crossfade(true)
                 placeholder(R.drawable.ic_launcher_background)
