@@ -17,6 +17,7 @@ import skg.code.event_app.ApiInterface
 import skg.code.event_app.BASE_URL
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.R
+import skg.code.event_app.util.formatDate
 
 class EventDetailsActivity: AppCompatActivity() {
 
@@ -96,7 +97,7 @@ class EventDetailsActivity: AppCompatActivity() {
 
     private fun updateUI(event: EventDataItem) {
         eventTitleTextView.text = event.event_title
-        eventDateTextView.text = "${event.event_date} at ${event.event_time}"
+        eventDateTextView.text = "${formatDate(event.event_date)} at ${event.event_time}"
         eventLocationTextView.text ="${event.event_location}, ${event.venue}"
         eventDescriptionTextView.text = event.event_description
 
