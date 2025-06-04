@@ -17,4 +17,5 @@ data class EventDataItem(
     val venue: String,
     val category_image_url: String = "",
     val event_image_url: String = "",
+    val trending: Boolean
 )
