@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_illustration_desc">Welcome illustration</string>
+    <string name="welcome_text">Welcome to Ticky! I hope you have a good time in our app!</string>
+    <string name="welcome_text_desc">Welcome to Ticky text description</string>
+    <string name="welcome_title">Welcome!</string>
+</resources>
