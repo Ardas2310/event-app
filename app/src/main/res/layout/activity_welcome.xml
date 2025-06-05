@@ -23,6 +23,15 @@
             android:contentDescription="@string/welcome_illustration_desc"
             android:scaleType="fitCenter"
             android:src="@drawable/welcome_illustration" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/welcome_text_desc"
+            android:text="@string/welcome_text"
+            android:textColor="@color/yellow"
+            android:textSize="20sp"
+            android:textAlignment="center"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
