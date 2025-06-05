@@ -29,6 +29,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/welcome_title"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/welcome_text_desc"
             android:text="@string/welcome_text"
             android:textAlignment="center"
