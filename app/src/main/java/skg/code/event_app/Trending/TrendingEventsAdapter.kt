@@ -11,6 +11,7 @@ import coil.load
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.EventDetails.EventDetailsActivity
 import skg.code.event_app.R
+import skg.code.event_app.ui.drawable.createShimmerDrawable
 import skg.code.event_app.util.formatDate
 
 class TrendingEventsAdapter(private var events: List<EventDataItem>):
@@ -53,12 +54,14 @@ class TrendingEventsAdapter(private var events: List<EventDataItem>):
         private val EventTitle: TextView = itemView.findViewById(R.id.EventTitle)
         private val EventDate: TextView = itemView.findViewById(R.id.EventDate)
 
+        val shimmerDrawable = createShimmerDrawable()
+
         fun bind(event: EventDataItem){
             EventTitle.text = event.event_title
             EventDate.text = "${formatDate(event.event_date)} • ${event.event_location}"
             EventImage.load(event.event_image_url) {
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_background)
+                placeholder(shimmerDrawable)
                 error(R.drawable.ic_launcher_background)
             }
 
