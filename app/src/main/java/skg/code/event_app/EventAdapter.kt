@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import skg.code.event_app.EventsCategory.EventsCategoryActivity
+import skg.code.event_app.ui.drawable.createShimmerDrawable
 
 class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
@@ -45,11 +46,13 @@ class EventAdapter(var eventList: List<EventDataItem>): RecyclerView.Adapter<Eve
         val category = uniqueCategories[position]
         holder.event_category.text = category
 
+        val shimmerDrawable = createShimmerDrawable()
+
         val imageUrl = categoryImageMap[category] ?: ""
         if(imageUrl.isNotEmpty()) {
             holder.imageView.load(imageUrl) {
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_background)
+                placeholder(shimmerDrawable)
                 error(R.drawable.ic_launcher_background)
             }
         } else {

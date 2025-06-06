@@ -17,6 +17,7 @@ import skg.code.event_app.ApiInterface
 import skg.code.event_app.BASE_URL
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.R
+import skg.code.event_app.ui.drawable.createShimmerDrawable
 import skg.code.event_app.util.formatDate
 
 class EventDetailsActivity: AppCompatActivity() {
@@ -101,9 +102,11 @@ class EventDetailsActivity: AppCompatActivity() {
         eventLocationTextView.text ="${event.event_location}, ${event.venue}"
         eventDescriptionTextView.text = event.event_description
 
+        val shimmerDrawable = createShimmerDrawable()
+
         eventImageView.load(event.event_image_url) {
             crossfade(true)
-            placeholder(R.drawable.ic_launcher_background)
+            placeholder(shimmerDrawable)
             error(R.drawable.ic_launcher_background)
         }
 

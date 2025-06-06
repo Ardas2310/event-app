@@ -11,6 +11,7 @@ import coil.load
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.EventDetails.EventDetailsActivity
 import skg.code.event_app.R
+import skg.code.event_app.ui.drawable.createShimmerDrawable
 
 class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
     RecyclerView.Adapter<EventsCategoryAdapter.EventViewHolder>() {
@@ -29,9 +30,11 @@ class EventsCategoryAdapter(private var eventList: List<EventDataItem>) :
 
         holder.eventPrice.text = "${event.event_price}€"
 
+        val shimmerDrawable = createShimmerDrawable()
+
         holder.eventImagePreview.load(event.event_image_url){
             crossfade(true)
-            placeholder(R.drawable.ic_launcher_background)
+            placeholder(shimmerDrawable)
             error(R.drawable.ic_launcher_background)
         }
 

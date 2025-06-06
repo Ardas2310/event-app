@@ -129,18 +129,10 @@
                         android:textStyle="bold"
                         android:paddingBottom="12dp" />
 
-                    <ProgressBar
-                        android:id="@+id/progress_circular_rv"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:visibility="visible"
-                        android:layout_gravity="center_horizontal"/>
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/MainRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         android:nestedScrollingEnabled="false"
                         android:padding="8dp"/>
 

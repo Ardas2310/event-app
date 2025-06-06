@@ -11,6 +11,7 @@ import coil.load
 import skg.code.event_app.EventDataItem
 import skg.code.event_app.EventDetails.EventDetailsActivity
 import skg.code.event_app.R
+import skg.code.event_app.ui.drawable.createShimmerDrawable
 
 class SearchAdapter(var results: List<EventDataItem>): RecyclerView.Adapter<SearchAdapter.ResultViewHolder>() {
 
@@ -26,6 +27,7 @@ class SearchAdapter(var results: List<EventDataItem>): RecyclerView.Adapter<Sear
         position: Int
     ) {
 
+        val shimmerDrawable = createShimmerDrawable()
         val event = results[position]
         // Title
         holder.event_title.text = event.event_title
@@ -34,7 +36,7 @@ class SearchAdapter(var results: List<EventDataItem>): RecyclerView.Adapter<Sear
         // Image
         holder.event_Image.load(event.event_image_url){
             crossfade(true)
-            placeholder(R.drawable.ic_launcher_background)
+            placeholder(shimmerDrawable)
             error(R.drawable.ic_launcher_background)
         }
 
