@@ -241,6 +241,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<EventDataItem>>, t: Throwable) {
                 Log.e("MainActivity", "API call failed: ${t.message}")
+                // ✅ Hide shimmer even on failure
                 hideShimmerShowContent(shimmerTrendingContainer, trendingEventsSection)
                 hideShimmerShowContent(shimmerCategoriesContainer, categoriesSection)
             }
