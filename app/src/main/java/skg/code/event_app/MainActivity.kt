@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
     private val autoScrollHandler = Handler(Looper.getMainLooper())
     private var autoScrollRunnable: Runnable? = null
 
+    //Shimmer views
+    private lateinit var shimmerTrendingContainer: ShimmerFrameLayout
+    private lateinit var shimmerCategoriesContainer: ShimmerFrameLayout
+    private lateinit var trendingEventsSection: LinearLayout
+    private lateinit var categoriesSection: LinearLayout
 
     //EventList is a test list for manual insertion of data
     private var eventList = ArrayList<EventDataItem>()
@@ -65,12 +71,24 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.MainRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
+        // Shimmer Views
+        shimmerTrendingContainer = findViewById(R.id.shimmer_trending_container)
+        shimmerCategoriesContainer = findViewById(R.id.shimmer_categories_container)
+        trendingEventsSection = findViewById(R.id.trending_events_section)
+        categoriesSection = findViewById(R.id.categories_section)
+
+        //Shimmer effect for trending
+        shimmerTrendingContainer.startShimmer()
+        //Shimmer effect for categories
+        shimmerCategoriesContainer.startShimmer()
+
+
 
         // Initialize ViewPager2
         trendingEventsCarousel = findViewById(R.id.trendingEventsCarousel)
         carouselIndicators = findViewById(R.id.carouselIndicators)
 
-        setupTrendingEventsCarousel()
+
 
 
         findViewById<androidx.cardview.widget.CardView>(R.id.search_button).setOnClickListener {
@@ -98,6 +116,8 @@ class MainActivity : AppCompatActivity() {
         adapter = EventAdapter(emptyList())
         recyclerView.adapter = adapter
 
+
+        setupTrendingEventsCarousel()
         fetchEventCategory()
     }
 
@@ -201,25 +221,37 @@ class MainActivity : AppCompatActivity() {
                         adapter = EventAdapter(responseBody)
                         recyclerView.adapter = adapter
 
+                        // ✅ Hide categories shimmer and show content
+                        hideShimmerShowContent(shimmerCategoriesContainer, categoriesSection)
+
                         // Update trending events with the fetched data
                         updateTrendingEvents(responseBody)
+                    } else {
+                        // ✅ Hide shimmer even if response body is null
+                        hideShimmerShowContent(shimmerCategoriesContainer, categoriesSection)
+                        hideShimmerShowContent(shimmerTrendingContainer, trendingEventsSection)
                     }
                 } else {
                     Log.e("MainActivity", "Error: ${response.code()} - ${response.message()}")
+                    // ✅ Hide shimmer on unsuccessful response
+                    hideShimmerShowContent(shimmerCategoriesContainer, categoriesSection)
+                    hideShimmerShowContent(shimmerTrendingContainer, trendingEventsSection)
                 }
             }
 
             override fun onFailure(call: Call<List<EventDataItem>>, t: Throwable) {
                 Log.e("MainActivity", "API call failed: ${t.message}")
+                // ✅ Hide shimmer even on failure
+                hideShimmerShowContent(shimmerTrendingContainer, trendingEventsSection)
+                hideShimmerShowContent(shimmerCategoriesContainer, categoriesSection)
             }
         })
     }
 
     private fun updateTrendingEvents(allEvents: List<EventDataItem>) {
         // Filter trending events or get top 5 events
-        val filteredTrendingEvents = allEvents.filter { it.trending }.take(5)
-
         // If no trending events, take first 5 events
+        val filteredTrendingEvents = allEvents.filter { it.trending }.take(5)
         val eventsToShow = if (filteredTrendingEvents.isNotEmpty()) {
             filteredTrendingEvents
         } else {
@@ -233,6 +265,8 @@ class MainActivity : AppCompatActivity() {
         if (trendingEvents.isNotEmpty()) {
             setupIndicators(trendingEvents.size)
             startAutoScroll()
+
+            hideShimmerShowContent(shimmerTrendingContainer, trendingEventsSection)
         }
     }
 
@@ -282,6 +316,12 @@ class MainActivity : AppCompatActivity() {
         autoScrollHandler.postDelayed(autoScrollRunnable!!, 8000)
     }
 
+    private fun hideShimmerShowContent(shimmerLayout: ShimmerFrameLayout, contentLayout: LinearLayout) {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
+        contentLayout.visibility = View.VISIBLE
+    }
+
     private fun stopAutoScroll() {
         autoScrollRunnable?.let {
             autoScrollHandler.removeCallbacks(it)
@@ -299,6 +339,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        shimmerTrendingContainer.startShimmer()
+        shimmerCategoriesContainer.startShimmer()
         if (trendingEvents.isNotEmpty()) {
             startAutoScroll()
         }
@@ -306,6 +348,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        shimmerTrendingContainer.stopShimmer()
+        shimmerCategoriesContainer.stopShimmer()
         stopAutoScroll()
     }
 
