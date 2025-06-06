@@ -61,8 +61,6 @@ class MainActivity : AppCompatActivity() {
         // Content View MainActivity
         setContentView(R.layout.activity_main)
 
-        // Circular Progress Bar for main recyclerview.
-        var progressBarRV = findViewById<ProgressBar>(R.id.progress_circular_rv)
         // RecyclerView
         recyclerView = findViewById(R.id.MainRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -100,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         adapter = EventAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        fetchEventCategory(progressBarRV)
+        fetchEventCategory()
     }
 
 
@@ -171,9 +169,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun fetchEventCategory(progressBarRV: ProgressBar? = null) {
-        showProgressBar(progressBarRV)
-
+    private fun fetchEventCategory() {
         // Set up OkHttpClient with timeouts.
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -207,31 +203,17 @@ class MainActivity : AppCompatActivity() {
 
                         // Update trending events with the fetched data
                         updateTrendingEvents(responseBody)
-                        hideProgressBar(progressBarRV)
                     }
                 } else {
                     Log.e("MainActivity", "Error: ${response.code()} - ${response.message()}")
-                    hideProgressBar(progressBarRV)
                 }
             }
 
             override fun onFailure(call: Call<List<EventDataItem>>, t: Throwable) {
                 Log.e("MainActivity", "API call failed: ${t.message}")
-                hideProgressBar(progressBarRV)
             }
         })
     }
-
-    private fun showProgressBar(progressBar: ProgressBar?) {
-        progressBar?.visibility = View.VISIBLE
-        recyclerView.visibility = View.GONE
-    }
-
-    private fun hideProgressBar(progressBar: ProgressBar?) {
-        progressBar?.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-    }
-
 
     private fun updateTrendingEvents(allEvents: List<EventDataItem>) {
         // Filter trending events or get top 5 events
