@@ -60,8 +60,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Splash Screen loading time
-        Thread.sleep(3000)
         installSplashScreen()
 
         // Content View MainActivity
