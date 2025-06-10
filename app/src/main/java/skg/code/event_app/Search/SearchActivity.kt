@@ -105,7 +105,7 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
-
+    //TODO: Better search algorithm. Searching by title is okay, but searching by Location / Category is not very effective.
     private fun searchEvents(query: String) {
         if(query.isEmpty()) {
             adapter.updateResults(allEvents.take(5))
