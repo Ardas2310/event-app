@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:text="25 Jul 2025 at 18:00"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:text="Athens, Wembley Stadium"
                         android:textColor="@color/yellow"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -128,7 +128,7 @@
                     android:lineSpacingExtra="4dp"
                     android:text="Experience the magic of the ColdPlay World Tour live in London! Get ready for an unforgettable night with spectacular visuals and their greatest hits."
                     android:textColor="@color/yellow"
-                    android:textSize="15sp" />
+                    android:textSize="18sp" />
 
                 <!-- Location Map Section -->
                 <TextView
