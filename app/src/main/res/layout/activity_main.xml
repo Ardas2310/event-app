@@ -341,32 +341,41 @@
                 android:src="@android:drawable/ic_menu_close_clear_cancel" />
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/profile_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="?attr/colorOnSurface"
             android:text="Profile"
-            android:textColor="?attr/colorSurface" />
+            android:textColor="?attr/colorSurface"
+            app:cornerRadius="12dp"
+            app:backgroundTint="?attr/colorOnSurface"
+            app:icon="@drawable/person_filled"
+            app:iconTint="?attr/colorSurface" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/settings_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="?attr/colorOnSurface"
             android:text="Settings"
-            android:textColor="?attr/colorSurface" />
+            android:textColor="?attr/colorSurface"
+            app:cornerRadius="12dp"
+            app:backgroundTint="?attr/colorOnSurface"
+            app:icon="@drawable/settings_filled"
+            app:iconTint="?attr/colorSurface" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/support_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="?attr/colorOnSurface"
             android:text="Support"
-            android:textColor="?attr/colorSurface" />
+            android:textColor="?attr/colorSurface"
+            app:cornerRadius="12dp"
+            app:backgroundTint="?attr/colorOnSurface"
+            app:icon="@drawable/help_filled"
+            app:iconTint="?attr/colorSurface" />
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
