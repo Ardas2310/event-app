@@ -105,7 +105,6 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
-
     private fun searchEvents(query: String) {
         if(query.isEmpty()) {
             adapter.updateResults(allEvents.take(5))
@@ -114,7 +113,8 @@ class SearchActivity : AppCompatActivity() {
             val filteredEvents = allEvents.filter {
                 it.event_title.contains(query, ignoreCase = true) ||
                 it.event_description.contains(query, ignoreCase = true) ||
-                it.event_location.contains(query, ignoreCase = true)
+                it.event_location.contains(query, ignoreCase = true) ||
+                it.event_category.contains(query, ignoreCase = true)
             }
             adapter.updateResults(filteredEvents)
             findViewById<TextView>(R.id.suggestions_title).text = "Results"
