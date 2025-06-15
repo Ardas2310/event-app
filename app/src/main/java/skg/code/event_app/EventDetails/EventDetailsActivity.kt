@@ -3,10 +3,10 @@ package skg.code.event_app.EventDetails
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,12 +28,8 @@ class EventDetailsActivity: AppCompatActivity() {
     private lateinit var eventDateTextView: TextView
     private lateinit var eventLocationTextView: TextView
     private lateinit var eventDescriptionTextView: TextView
-    private lateinit var buyTicketsButton: ExtendedFloatingActionButton
-
-
-
-
-
+    private lateinit var buyTicketsButton: LinearLayout
+    private lateinit var ticketPriceText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +43,7 @@ class EventDetailsActivity: AppCompatActivity() {
         eventLocationTextView = findViewById(R.id.detailed_event_location)
         eventDescriptionTextView = findViewById(R.id.detailed_event_description)
         buyTicketsButton = findViewById(R.id.buy_tickets_button)
+        ticketPriceText = findViewById(R.id.ticket_price_text)
 
         val eventId = intent.getStringExtra("EVENT_ID") ?: throw IllegalArgumentException("Event ID is required")
 
@@ -56,20 +53,18 @@ class EventDetailsActivity: AppCompatActivity() {
         // Fetch event details using the provided event ID
         fetchEventDetails(eventId)
 
-        //
-        buyTicketsButton.setOnClickListener { Snackbar.make(it,"Booking tickets for events...",
-            Snackbar.LENGTH_LONG).show() }
+        // Set up ticket button click
+        buyTicketsButton.setOnClickListener {
+            Snackbar.make(it, "Booking tickets for events...", Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun fetchEventDetails(eventId: String) {
-
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiInterface::class.java)
-
-
 
         retrofitBuilder.getEventsById(eventId).enqueue(object : Callback<EventDataItem> {
             override fun onResponse(call: Call<EventDataItem>, response: Response<EventDataItem>) {
@@ -89,17 +84,15 @@ class EventDetailsActivity: AppCompatActivity() {
         })
     }
 
-
     private fun showError(message: String) {
         Log.e("EventDetailsActivity", message)
-        //TODO: Johnny vale ena Toast pali opws to allo otan to deis
+        // You can add a Toast or Snackbar here if needed
     }
-
 
     private fun updateUI(event: EventDataItem) {
         eventTitleTextView.text = event.event_title
         eventDateTextView.text = "${formatDate(event.event_date)} at ${event.event_time}"
-        eventLocationTextView.text ="${event.event_location}, ${event.venue}"
+        eventLocationTextView.text = "${event.event_location}, ${event.venue}"
         eventDescriptionTextView.text = event.event_description
 
         val shimmerDrawable = createShimmerDrawable()
@@ -110,10 +103,6 @@ class EventDetailsActivity: AppCompatActivity() {
             error(R.drawable.ic_launcher_background)
         }
 
-        buyTicketsButton.text = "Tickets from ${event.event_price}€"
-
+        ticketPriceText.text = "Tickets from ${event.event_price}€"
     }
-
 }
-
-
