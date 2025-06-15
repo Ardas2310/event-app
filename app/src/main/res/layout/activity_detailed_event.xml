@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="ColdPlay World Tour"
-                    android:textColor="#1A1A1A"
+                    android:textColor="@color/yellow"
                     android:textSize="28sp"
                     android:textStyle="bold" />
 
@@ -84,14 +84,14 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:src="@android:drawable/ic_menu_recent_history"
-                        app:tint="#666666" />
+                        app:tint="@color/yellow" />
 
                     <TextView
                         android:id="@+id/detailed_event_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="25 Jul 2025 at 18:00"
-                        android:textColor="#4A4A4A"
+                        android:textColor="@color/yellow"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -108,14 +108,14 @@
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
                         android:src="@android:drawable/ic_dialog_map"
-                        app:tint="#666666" />
+                        app:tint="@color/yellow" />
 
                     <TextView
                         android:id="@+id/detailed_event_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Athens, Wembley Stadium"
-                        android:textColor="#4A4A4A"
+                        android:textColor="@color/yellow"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -127,7 +127,7 @@
                     android:layout_marginBottom="32dp"
                     android:lineSpacingExtra="4dp"
                     android:text="Experience the magic of the ColdPlay World Tour live in London! Get ready for an unforgettable night with spectacular visuals and their greatest hits."
-                    android:textColor="#666666"
+                    android:textColor="@color/yellow"
                     android:textSize="15sp" />
 
                 <!-- Location Map Section -->
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Location Map"
-                    android:textColor="#1A1A1A"
+                    android:textColor="@color/yellow"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -201,7 +201,7 @@
             android:layout_height="24dp"
             android:src="@android:drawable/ic_menu_add"
             android:layout_marginEnd="8dp"
-            app:tint="#000000" />
+            app:tint="@color/purple" />
 
         <TextView
             android:id="@+id/ticket_price_text"
